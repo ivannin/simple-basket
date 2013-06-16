@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleBasket\n"
+"POT-Creation-Date: 2013-06-16 16:31+0400\n"
+"PO-Revision-Date: 2013-06-16 16:31+0400\n"
+"Last-Translator: Иван Никитин <ivan@nikitin.org>\n"
+"Language-Team: IvanNikitin <ivan@nikitin.org>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;_e;__;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../options.php:2
+msgid "Buy"
+msgstr "Купить"
+
+#: ../options.php:3
+msgid "product"
+msgstr "product"
+
+#: ../options.php:4
+msgid "Price"
+msgstr "Цена"
+
+#: ../options.php:47 ../simple-basket.php:29
+msgid "Simple Basket"
+msgstr "Корзина"
+
+#: ../options.php:49
+msgid ""
+"Please change the settings with caution. It is better to go to a technical "
+"expert."
+msgstr ""
+"Пожалуйста, изменяйте параметры с осторожностью. Лучше обратиться к "
+"техническому эксперту."
+
+#: ../options.php:53
+msgid "Buy Now Button"
+msgstr "Кнопка Купить"
+
+#: ../options.php:55
+msgid "Buy Now Button Caption"
+msgstr "Надпись на кнопке"
+
+#: ../options.php:57
+msgid ""
+"This parameter specifies the caption on the buttom [Buy]. To display this "
+"button use shortcode [buy-now]"
+msgstr ""
+"Этот параметр задает надпись на кнопке [Купить]. Для вывода кнопки "
+"используется шорткод [buy-now]"
+
+#: ../options.php:61
+msgid "Product Catalog"
+msgstr "Каталог продуктов"
+
+#: ../options.php:63
+msgid "Catalog Post Type"
+msgstr "Тип записей каталога продуктов"
+
+#: ../options.php:65
+msgid "This parameter specifies product post type."
+msgstr ""
+"Этот параметр задает тип записей каталога продктов. Обратитесь к "
+"разработчику темы."
+
+#: ../options.php:68
+msgid "Price Custom Field"
+msgstr "Поле Цена"
+
+#: ../options.php:70
+msgid ""
+"This parameter specifies the name of product custom field that contains the "
+"price."
+msgstr ""
+"Этот параметр задает название настраиваемого поля, содержащего цену продукта."
+
+#: ../options.php:74
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: ../options.php:76
+msgid "Google Analytics intergation"
+msgstr "Интеграция с Google Analytics"
+
+#: ../options.php:78
+msgid "None"
+msgstr "Нет"
+
+#: ../options.php:79
+msgid "Google Analytics (ga.js)"
+msgstr "Google Analytics (ga.js)"
+
+#: ../options.php:80
+msgid "Universal Analytics (analytics.js)"
+msgstr "Universal Analytics (analytics.js)"
+
+#: ../options.php:82
+msgid ""
+"This parameter specifies the integration mode with Google Analytits. This "
+"option adds the necessary tracking code to the page \"Thanks for your "
+"purchase\". For correct intergation e-commerce mode must be enabled at "
+"Google Analytics profile options."
+msgstr ""
+"Этот параметр определяет режим интеграции с Google Analytics. Эта опция "
+"добавляет необходимый код отслеживания на страницу \"Спасибо за покупку\". "
+"Для корректной работы должен быть включен электронной коммерции  в профиле "
+"Google Analytics."
+
+#: ../options.php:87
+msgid "Update settings"
+msgstr "Сохранить"
+
+#: ../simple-basket.php:29
+msgid "Simple Basket Options"
+msgstr "Параметры корзины"
+
+#: ../simple-basket.php:36
+msgid "You do not have sufficient permissions to access this page."
+msgstr "У вас нет разрешений на доступ к этой странице."

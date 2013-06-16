@@ -23,21 +23,32 @@ License:
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ================================================================================
 */
-
-// Страница параметров плагина
-add_action( 'admin_menu', 'simpleBasketCreateAdminMenu' );
-function simpleBasketCreateAdminMenu() {
-	add_options_page(__('Simple Basket Options'), __('Simple Basket'), 
-		'manage_options', 'simple-baslet', 'simpleBasketOptions' );
+// ---------------- Страница параметров плагина ----------------
+add_action( 'admin_menu', 'simple_basketCreateAdminMenu' );
+function simple_basketCreateAdminMenu() {
+	add_options_page(__('Simple Basket Options', 'simple_basket'), __('Simple Basket', 'simple_basket'), 
+		'manage_options', 'simple-baslet', 'simple_basketOptions' );
 }
 
-function simpleBasketOptions() 
+function simple_basketOptions() 
 {
 	if (!current_user_can( 'manage_options' ))
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+		wp_die( __( 'You do not have sufficient permissions to access this page.','simple_basket') );
 	
 	include(plugin_dir_path(__FILE__).'options.php');
 }
+
+// ------------------------- Инициализация -------------------------
+add_action('plugins_loaded', 'simple_basketInit');
+function simple_basketInit() 
+{
+	// Локализация
+	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
+}
+
+
+
+
 
 
 ?>
