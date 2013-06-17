@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SimpleBasket\n"
-"POT-Creation-Date: 2013-06-16 16:31+0400\n"
-"PO-Revision-Date: 2013-06-16 16:31+0400\n"
+"POT-Creation-Date: 2013-06-17 06:59+0400\n"
+"PO-Revision-Date: 2013-06-17 07:03+0400\n"
 "Last-Translator: Иван Никитин <ivan@nikitin.org>\n"
 "Language-Team: IvanNikitin <ivan@nikitin.org>\n"
 "Language: ru_RU\n"
@@ -17,23 +17,75 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../options.php:2
+#: ../delivery.php:10
+msgid "Delivery"
+msgstr "Доставка"
+
+#: ../delivery.php:11
+msgid "Parent Delivery Type:"
+msgstr "Родительский тип:"
+
+#: ../delivery.php:12
+msgid "All Delivery Types"
+msgstr "Все типы"
+
+#: ../delivery.php:13
+msgid "View Delivery Types"
+msgstr "Просмотр типа"
+
+#: ../delivery.php:14
+msgid "Add New Delivery Type"
+msgstr "Добавить новый тип"
+
+#: ../delivery.php:15
+msgid "New Delivery Type"
+msgstr "Новый тип"
+
+#: ../delivery.php:16
+msgid "Edit Delivery Type"
+msgstr "Редактировать тип"
+
+#: ../delivery.php:17
+msgid "Update Delivery Type"
+msgstr "Обновить тип"
+
+#: ../delivery.php:18
+msgid "Search delivery type"
+msgstr "Поиск типов"
+
+#: ../delivery.php:19
+msgid "No delivery types found"
+msgstr "Типы доставки не найдены"
+
+#: ../delivery.php:20
+msgid "No delivery types found in Trash"
+msgstr "Нет удаленных типов доставки"
+
+#: ../delivery.php:24
+msgid "delivery"
+msgstr "delivery"
+
+#: ../delivery.php:25
+msgid "Delivery types"
+msgstr "Типы доставки"
+
+#: ../options.php:3
 msgid "Buy"
 msgstr "Купить"
 
-#: ../options.php:3
+#: ../options.php:4
 msgid "product"
 msgstr "product"
 
-#: ../options.php:4
+#: ../options.php:5
 msgid "Price"
 msgstr "Цена"
 
-#: ../options.php:47 ../simple-basket.php:29
+#: ../options.php:58 ../simple-basket.php:43
 msgid "Simple Basket"
 msgstr "Корзина"
 
-#: ../options.php:49
+#: ../options.php:60
 msgid ""
 "Please change the settings with caution. It is better to go to a technical "
 "expert."
@@ -41,15 +93,15 @@ msgstr ""
 "Пожалуйста, изменяйте параметры с осторожностью. Лучше обратиться к "
 "техническому эксперту."
 
-#: ../options.php:53
+#: ../options.php:63
 msgid "Buy Now Button"
 msgstr "Кнопка Купить"
 
-#: ../options.php:55
+#: ../options.php:65
 msgid "Buy Now Button Caption"
 msgstr "Надпись на кнопке"
 
-#: ../options.php:57
+#: ../options.php:67
 msgid ""
 "This parameter specifies the caption on the buttom [Buy]. To display this "
 "button use shortcode [buy-now]"
@@ -57,52 +109,52 @@ msgstr ""
 "Этот параметр задает надпись на кнопке [Купить]. Для вывода кнопки "
 "используется шорткод [buy-now]"
 
-#: ../options.php:61
+#: ../options.php:71
 msgid "Product Catalog"
 msgstr "Каталог продуктов"
 
-#: ../options.php:63
+#: ../options.php:73
 msgid "Catalog Post Type"
 msgstr "Тип записей каталога продуктов"
 
-#: ../options.php:65
+#: ../options.php:75
 msgid "This parameter specifies product post type."
 msgstr ""
 "Этот параметр задает тип записей каталога продктов. Обратитесь к "
 "разработчику темы."
 
-#: ../options.php:68
+#: ../options.php:78
 msgid "Price Custom Field"
 msgstr "Поле Цена"
 
-#: ../options.php:70
+#: ../options.php:80
 msgid ""
 "This parameter specifies the name of product custom field that contains the "
 "price."
 msgstr ""
 "Этот параметр задает название настраиваемого поля, содержащего цену продукта."
 
-#: ../options.php:74
+#: ../options.php:84
 msgid "Google Analytics"
 msgstr "Google Analytics"
 
-#: ../options.php:76
+#: ../options.php:86
 msgid "Google Analytics intergation"
 msgstr "Интеграция с Google Analytics"
 
-#: ../options.php:78
+#: ../options.php:95
 msgid "None"
 msgstr "Нет"
 
-#: ../options.php:79
+#: ../options.php:96
 msgid "Google Analytics (ga.js)"
 msgstr "Google Analytics (ga.js)"
 
-#: ../options.php:80
+#: ../options.php:97
 msgid "Universal Analytics (analytics.js)"
 msgstr "Universal Analytics (analytics.js)"
 
-#: ../options.php:82
+#: ../options.php:99
 msgid ""
 "This parameter specifies the integration mode with Google Analytits. This "
 "option adds the necessary tracking code to the page \"Thanks for your "
@@ -114,14 +166,20 @@ msgstr ""
 "Для корректной работы должен быть включен электронной коммерции  в профиле "
 "Google Analytics."
 
-#: ../options.php:87
+#: ../options.php:104
 msgid "Update settings"
 msgstr "Сохранить"
 
-#: ../simple-basket.php:29
+#: ../simple-basket.php:43
 msgid "Simple Basket Options"
 msgstr "Параметры корзины"
 
-#: ../simple-basket.php:36
+#: ../simple-basket.php:50
 msgid "You do not have sufficient permissions to access this page."
 msgstr "У вас нет разрешений на доступ к этой странице."
+
+#~ msgid "Delivery Types"
+#~ msgstr "Типы доставки"
+
+#~ msgid "Delivery Type"
+#~ msgstr "Тип доставки"

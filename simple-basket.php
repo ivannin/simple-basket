@@ -23,6 +23,20 @@ License:
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ================================================================================
 */
+
+// ------------------------- Инициализация -------------------------
+add_action('plugins_loaded', 'simple_basketInit');
+function simple_basketInit() 
+{
+	// Локализация
+	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
+
+	// Типы доставки
+	include(plugin_dir_path(__FILE__).'delivery.php');
+}
+
+
+
 // ---------------- Страница параметров плагина ----------------
 add_action( 'admin_menu', 'simple_basketCreateAdminMenu' );
 function simple_basketCreateAdminMenu() {
@@ -38,13 +52,6 @@ function simple_basketOptions()
 	include(plugin_dir_path(__FILE__).'options.php');
 }
 
-// ------------------------- Инициализация -------------------------
-add_action('plugins_loaded', 'simple_basketInit');
-function simple_basketInit() 
-{
-	// Локализация
-	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
-}
 
 
 
