@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SimpleBasket\n"
-"POT-Creation-Date: 2013-06-17 06:59+0400\n"
-"PO-Revision-Date: 2013-06-17 07:03+0400\n"
+"POT-Creation-Date: 2013-06-21 21:22+0400\n"
+"PO-Revision-Date: 2013-06-21 21:34+0400\n"
 "Last-Translator: Иван Никитин <ivan@nikitin.org>\n"
 "Language-Team: IvanNikitin <ivan@nikitin.org>\n"
 "Language: ru_RU\n"
@@ -17,7 +17,15 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../delivery.php:10
+#: ../delivery.php:8
+msgid "Delivery Types"
+msgstr "Типы доставки"
+
+#: ../delivery.php:9
+msgid "Delivery Type"
+msgstr "Тип доставки"
+
+#: ../delivery.php:10 ../options.php:120
 msgid "Delivery"
 msgstr "Доставка"
 
@@ -69,23 +77,31 @@ msgstr "delivery"
 msgid "Delivery types"
 msgstr "Типы доставки"
 
+#: ../delivery.php:68 ../delivery.php:81
+msgid "Cost"
+msgstr "Стоимость"
+
+#: ../delivery.php:83
+msgid "USD"
+msgstr "руб."
+
 #: ../options.php:3
 msgid "Buy"
 msgstr "Купить"
 
-#: ../options.php:4
+#: ../options.php:5
 msgid "product"
 msgstr "product"
 
-#: ../options.php:5
+#: ../options.php:6 ../order.php:165
 msgid "Price"
 msgstr "Цена"
 
-#: ../options.php:58 ../simple-basket.php:43
+#: ../options.php:89 ../simple-basket.php:48
 msgid "Simple Basket"
 msgstr "Корзина"
 
-#: ../options.php:60
+#: ../options.php:91
 msgid ""
 "Please change the settings with caution. It is better to go to a technical "
 "expert."
@@ -93,15 +109,15 @@ msgstr ""
 "Пожалуйста, изменяйте параметры с осторожностью. Лучше обратиться к "
 "техническому эксперту."
 
-#: ../options.php:63
-msgid "Buy Now Button"
-msgstr "Кнопка Купить"
+#: ../options.php:94
+msgid "Basket Options"
+msgstr "Параметры корзины"
 
-#: ../options.php:65
+#: ../options.php:96
 msgid "Buy Now Button Caption"
 msgstr "Надпись на кнопке"
 
-#: ../options.php:67
+#: ../options.php:98
 msgid ""
 "This parameter specifies the caption on the buttom [Buy]. To display this "
 "button use shortcode [buy-now]"
@@ -109,52 +125,90 @@ msgstr ""
 "Этот параметр задает надпись на кнопке [Купить]. Для вывода кнопки "
 "используется шорткод [buy-now]"
 
-#: ../options.php:71
+#: ../options.php:101
+msgid "Order Page"
+msgstr "Страница с формой заказа"
+
+#: ../options.php:103
+msgid ""
+"This parameter specifies the URL of page contains order form. To display thу "
+"order form use shortcode [order-form]"
+msgstr ""
+"Этот параметр задает URL страницы с формой заказа. Для вывода формы заказа "
+"используется шорткод [order-form]"
+
+#: ../options.php:107
 msgid "Product Catalog"
 msgstr "Каталог продуктов"
 
-#: ../options.php:73
+#: ../options.php:109
 msgid "Catalog Post Type"
 msgstr "Тип записей каталога продуктов"
 
-#: ../options.php:75
+#: ../options.php:111
 msgid "This parameter specifies product post type."
 msgstr ""
 "Этот параметр задает тип записей каталога продктов. Обратитесь к "
-"разработчику темы."
+"разработчику Вашей темы для разъяснений."
 
-#: ../options.php:78
+#: ../options.php:114
 msgid "Price Custom Field"
 msgstr "Поле Цена"
 
-#: ../options.php:80
+#: ../options.php:116
 msgid ""
 "This parameter specifies the name of product custom field that contains the "
 "price."
 msgstr ""
 "Этот параметр задает название настраиваемого поля, содержащего цену продукта."
 
-#: ../options.php:84
-msgid "Google Analytics"
-msgstr "Google Analytics"
+#: ../options.php:122
+msgid "Paid Delivery"
+msgstr "Доставка"
 
-#: ../options.php:86
-msgid "Google Analytics intergation"
-msgstr "Интеграция с Google Analytics"
+#: ../options.php:126
+msgid "My shop has different paid delivery plans."
+msgstr "Мой магазин использует оплачиваемые планы доставки."
 
-#: ../options.php:95
+#: ../options.php:127
+msgid ""
+"After change this mode you must update settings at <a href=\"/wp-admin/"
+"options-permalink.php\">permalink options page</a>."
+msgstr ""
+"После изменения этой установки перейдите на страницу <a href=\"/wp-admin/"
+"options-permalink.php\">Постоянные ссылки</a> и нажмите там кнопку "
+"[Сохранить изменения]."
+
+#: ../options.php:130
+msgid "Default Delivery Plan"
+msgstr "План доставки по умолчанию"
+
+#: ../options.php:135 ../options.php:149
 msgid "None"
 msgstr "Нет"
 
-#: ../options.php:96
+#: ../options.php:137
+msgid "This parameter specifies the default delivery plan at customer order."
+msgstr ""
+"Этот параметр устанавливает доставку по умолчанию в заказе пользователя."
+
+#: ../options.php:142
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: ../options.php:144
+msgid "Google Analytics intergation"
+msgstr "Интеграция с Google Analytics"
+
+#: ../options.php:150
 msgid "Google Analytics (ga.js)"
 msgstr "Google Analytics (ga.js)"
 
-#: ../options.php:97
+#: ../options.php:151
 msgid "Universal Analytics (analytics.js)"
 msgstr "Universal Analytics (analytics.js)"
 
-#: ../options.php:99
+#: ../options.php:153
 msgid ""
 "This parameter specifies the integration mode with Google Analytits. This "
 "option adds the necessary tracking code to the page \"Thanks for your "
@@ -166,20 +220,33 @@ msgstr ""
 "Для корректной работы должен быть включен электронной коммерции  в профиле "
 "Google Analytics."
 
-#: ../options.php:104
+#: ../options.php:158
 msgid "Update settings"
 msgstr "Сохранить"
 
-#: ../simple-basket.php:43
+#: ../order.php:163
+msgid "Title"
+msgstr "Наименование"
+
+#: ../order.php:164
+msgid "Quo"
+msgstr "Количество"
+
+#: ../order.php:166
+msgid "Summ"
+msgstr "Сумма"
+
+#: ../order.php:182
+msgid "Total"
+msgstr "Итого"
+
+#: ../simple-basket.php:48
 msgid "Simple Basket Options"
 msgstr "Параметры корзины"
 
-#: ../simple-basket.php:50
+#: ../simple-basket.php:55
 msgid "You do not have sufficient permissions to access this page."
 msgstr "У вас нет разрешений на доступ к этой странице."
 
-#~ msgid "Delivery Types"
-#~ msgstr "Типы доставки"
-
-#~ msgid "Delivery Type"
-#~ msgstr "Тип доставки"
+#~ msgid "Buy Now Button"
+#~ msgstr "Кнопка Купить"

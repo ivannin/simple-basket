@@ -54,4 +54,45 @@ function simple_basket_admin_css()
 </style>
 <?php
 }
+
+// Дополнительные колонки в таблице доставки
+define('SIMPLE_BASKET_COLUMN_DELIVERY_COST', 'colProductPrice');
+
+add_filter('manage_delivery_posts_columns', 'getDeliveryColumnsHead');  
+add_action('manage_delivery_posts_custom_column', 'showDeliveryColumnsContent', 10, 2); 
+
+// Названия колонок в таблице доставки  
+function getDeliveryColumnsHead($defaults) 
+{
+	// Добавляем новые колонки  
+    $defaults[SIMPLE_BASKET_COLUMN_DELIVERY_COST] = __('Cost', 'simple_basket');
+
+	// Убираем лишнее
+	unset($defaults['date']);
+    return $defaults;  
+}  
+  
+// Вывод данных в таблице доставки  
+function showDeliveryColumnsContent($column_name, $postId) 
+{  
+    switch ($column_name)
+	{
+		case SIMPLE_BASKET_COLUMN_DELIVERY_COST:
+			echo getDeliveryMeta($postId, __('Cost', 'simple_basket')), ' ', 
+				/* translators: please replace USD by your country currency */
+				__('USD', 'simple_basket');
+			break;
+
+	}
+}
+
+function getDeliveryMeta($postId, $customField)
+{
+		$values = get_post_meta($postId, $customField);
+		if (count($values) == 0) 
+			return '';
+		else
+			return trim($values[0]);	
+}
+
 ?>
