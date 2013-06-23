@@ -1,6 +1,9 @@
 <?php
+define('SIMPLE_BASKET_DELIVERY', 'delivery');	
+
 // Hook into the 'init' action
 add_action( 'init', 'createDeliveryPostType', 0 );
+
 // Register Custom Post Type
 function createDeliveryPostType() 
 {
@@ -21,10 +24,10 @@ function createDeliveryPostType()
 	);
 
 	$args = array(
-		'label'               => __( 'delivery', 'simple_basket' ),
-		'description'         => __( 'Delivery types', 'simple_basket' ),
+		'label'               => __('delivery', 'simple_basket'),
+		'description'         => __('Delivery types', 'simple_basket'),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'thumbnail', 'custom-fields', ),
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'custom-fields'),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -40,12 +43,12 @@ function createDeliveryPostType()
 		'capability_type'     => 'page',
 	);
 
-	register_post_type( 'delivery', $args );
+	register_post_type(SIMPLE_BASKET_DELIVERY, $args);
 }
 
 // Иконка на странице аминистрирования
-add_action( 'admin_head', 'simple_basket_admin_css' );
-function simple_basket_admin_css() 
+add_action('admin_head', 'simple_basket_admin_delivery_css');
+function simple_basket_admin_delivery_css() 
 { ?>
 <style type="text/css">
 	.icon32-posts-delivery {
@@ -78,7 +81,7 @@ function showDeliveryColumnsContent($column_name, $postId)
     switch ($column_name)
 	{
 		case SIMPLE_BASKET_COLUMN_DELIVERY_COST:
-			echo getDeliveryMeta($postId, __('Cost', 'simple_basket')), ' ', 
+			echo simple_basket_custom_fields($postId, __('Cost', 'simple_basket')), ' ', 
 				/* translators: please replace USD by your country currency */
 				__('USD', 'simple_basket');
 			break;
@@ -86,13 +89,17 @@ function showDeliveryColumnsContent($column_name, $postId)
 	}
 }
 
-function getDeliveryMeta($postId, $customField)
+// Свойства доставки (произвольные поля) по умолчанию
+add_action('wp_insert_post', 'setDeliveryDefaults');
+function setDeliveryDefaults($postId)
 {
-		$values = get_post_meta($postId, $customField);
-		if (count($values) == 0) 
-			return '';
-		else
-			return trim($values[0]);	
+    if ($_GET['post_type'] == SIMPLE_BASKET_DELIVERY) 
+	{
+		add_post_meta($postId, __('Cost', 'simple_basket'), '0', true) 
+			or update_post_meta($postId, __('Cost', 'simple_basket'), '0');
+	}
+    return true;
 }
+
 
 ?>

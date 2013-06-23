@@ -23,10 +23,6 @@ License:
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ================================================================================
 */
-// ----------------------- Подключения -----------------------
-require(plugin_dir_path(__FILE__) . 'order.php');
-
-
 
 // ------------------------- Инициализация -------------------------
 add_action('plugins_loaded', 'simple_basketInit');
@@ -35,12 +31,10 @@ function simple_basketInit()
 	// Локализация
 	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
 
-	// Редим и типы доставки
+	// Режим и типы доставки
 	if (get_option('simple_basket_delivery') == '1')
 		include(plugin_dir_path(__FILE__).'delivery.php');
 }
-
-
 
 // ---------------- Страница параметров плагина ----------------
 add_action( 'admin_menu', 'simple_basketCreateAdminMenu' );
@@ -57,10 +51,38 @@ function simple_basketOptions()
 	include(plugin_dir_path(__FILE__).'options.php');
 }
 
+// ----------------------- GET параметры -----------------------
+define('SIMPLE_BASKET_ADD',			'add');
+define('SIMPLE_BASKET_UPDATE',		'update');
+define('SIMPLE_BASKET_DELETE',		'delete');
+define('SIMPLE_BASKET_CHECKOUT',	'checkout');
+define('SIMPLE_BASKET_MODE',		'mode');
+
+// ----------------------- Подключения -----------------------
+require(plugin_dir_path(__FILE__) . 'order.php');
+require(plugin_dir_path(__FILE__) . 'buy-now.php');
+require(plugin_dir_path(__FILE__) . 'order-form.php');
+
+// ------------------- Некоторые общие функии ----------------
+// Возвращает значение произвольных полей
+function simple_basket_custom_fields($postId, $customField) 
+{
+	$values = get_post_meta($postId, $customField);
+	if (count($values) == 0) 
+		return '';
+	else
+		return trim($values[0]);		
+}
 
 
-
-
+// Подключения CSS, JavaScript и т.п. 
+add_action('wp_enqueue_scripts', 'simple_basket_externals');
+function simple_basket_externals() 
+{
+    // Respects SSL, Style.css is relative to the current file
+    wp_register_style('simple-basket', plugins_url('simple-basket.min.css', __FILE__) );
+    wp_enqueue_style('simple-basket' );
+}
 
 
 ?>

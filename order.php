@@ -1,6 +1,6 @@
 <?php
 /**
- * Класс обработки заказа
+ * Класс корзины заказа
  *
  */
 
@@ -32,15 +32,16 @@ class SimpleBasketOrder
 	 * @param string category категория товара
 	 * @static
 	 */
-	 public static function addItem($title, $price, $category='')
+	 public static function addItem($id, $title, $price, $category='')
 	 {
 		$order = self::create();
-		$order->add($title, $price, $category);
+		$order->add($id, $title, $price, $category);
 	 }
 
 
 	/* ------------------- Определения класса  ---------------------- */	
 	const ITEMS			= 'SIMPLE_BASKET_ITEMS';
+	const TITLE			= 'SIMPLE_BASKET_TITLE';
 	const QUO			= 'SIMPLE_BASKET_QUO';
 	const PRICE			= 'SIMPLE_BASKET_PRICE';
 	const CATEGORY		= 'SIMPLE_BASKET_CATEGORY';
@@ -63,18 +64,19 @@ class SimpleBasketOrder
 	 private function __construct()
 	 {
 	 	// Гарантированно начнем сессию
-		session_start();
+		// @session_start();
 		$this->items = (isset($_SESSION[self::ITEMS])) ? $_SESSION[self::ITEMS] : array();
 		$this->userName = (isset($_SESSION[self::USER_NAME])) ? $_SESSION[self::USER_NAME] : '';
 		$this->userEmail = (isset($_SESSION[self::USER_EMAIL])) ? $_SESSION[self::USER_EMAIL] : '';
 		$this->userPhone = (isset($_SESSION[self::USER_PHONE])) ? $_SESSION[self::USER_PHONE] : '';
 		$this->userComment = (isset($_SESSION[self::USER_COMMENT])) ? $_SESSION[self::USER_COMMENT] : '';
+
 	 }
 
 	/**
 	 * Деструктор класса
 	 */
-	 private function __destruct()
+	 public function __destruct()
 	 {
 		$_SESSION[self::ITEMS] = $this->items;
 		$_SESSION[self::USER_NAME] = $this->userName;
@@ -131,62 +133,91 @@ class SimpleBasketOrder
 	/* ------------------- Работа с корзиной  ---------------------- */
 	/**
 	 * Добавляет в заказ очередной элемент
+	 * @param int id Код продукта
 	 * @param string title наименование товара
 	 * @param float price цена товара
 	 * @param string category категория товара
 	 */
-	 public function add($title, $price, $category='')
+	 public function add($id, $title, $price, $category='')
 	 {
+		
 		// Если такой элемент уже есть...
-		if (array_key_exists($this->items, $title))
-		{
+		if (array_key_exists($id, $this->items))
+		{			
 			// Увеличим количество
-			$this->items[$title][self::QUO]++;			
-			return;
+			$this->items[$id][self::QUO]++;	
 		}
-		// Добавим элемент
-		$this->items[$title] = array
-		(
-			self::QUO	=> 1,
-			self::PRICE => $price,
-			self::CATEGORY => $category
-		);
+		else
+		{
+			// Добавим элемент
+			$this->items[$id] = array
+			(
+				self::TITLE => $title,
+				self::QUO	=> 1,
+				self::PRICE => $price,
+				self::CATEGORY => $category
+			);			
+		}
+
 	 }
+	/* ------------------- Работа с корзиной  ---------------------- */
+	/**
+	 * Обновляем в заказе количество элементов
+	 * @param int id Код продукта
+	 * @param int quo Число товаров
+	 */
+	 public function update($id, $quo)
+	 {
+		
+		// Если такой элемент уже есть...
+		if (array_key_exists($id, $this->items))
+		{			
+			if ($quo == 0)
+			{
+				// Удаляем элемент
+				unset($this->items[$id]);
+			}
+			else
+			{
+				// Изменяем количество
+				$this->items[$id][self::QUO] = $quo;				
+			}
+		}
+	 }
+
 	/**
 	 * Возвращает HTML код корзины
 	 * @return string HTML код корзины
 	 */
 	 public function getHTML()
-	 {
+	 { 
 		$output = '<table class="basket">' .
 			'<thead><tr>' .
 				'<tr><td>' . __('Title', 'simple_basket') . '</td>' .
-				'<tr><td>' . __('Quo', 'simple_basket') . '</td>' .
-				'<tr><td>' . __('Price', 'simple_basket') . '</td>' .
-				'<tr><td>' . __('Summ', 'simple_basket') . '</td>' .
+				'<td>' . __('Quo', 'simple_basket') . '</td>' .
+				'<td>' . __('Price', 'simple_basket') . '</td>' .
+				'<td>' . __('Summ', 'simple_basket') . '</td>' .
 			'</tr></thead>' . 
 			'<tbody>';
 		$total = 0;
-		foreach ($this->$items as $title=>$item)
+		foreach ($this->items as $id=>$item)
 		{
 			// Если в корзине количество товара меньше или ноль - пропускаем
 			if ($item[self::QUO] <= 0) continue;
 			$summ = $item[self::QUO] * $item[self::PRICE];
-			$output .= '<tr><td class="title">' . $title . '</td>' .
-				'<td class="quo" data-value="' . $item[self::QUO] . '">' . $item[self::QUO] . '</td>' .
-				'<td class="price" data-value="' . $item[self::PRICE] . '">' . number_format($item[self::PRICE], 2, ',', ' ') . '</td>' . 
-				'<td class="summ" data-value="' . $item[self::PRICE] . '">' . number_format($summ, 2, ',', ' ') . '</td></tr>'; 
+			/* translators: please replace USD by your country currency */
+			$output .= '<tr data-product-id="' . $id . '"><td class="title">' . $item[self::TITLE] . '</td>' .
+				'<td class="quo" data-value="' . $item[self::QUO] . '" data-id="' . $id . '">' . $item[self::QUO] . '</td>' .
+				'<td class="price" data-value="' . $item[self::PRICE] . '">' . number_format($item[self::PRICE], 2, ',', ' ') . __('USD', 'simple_basket') . '</td>' . 
+				'<td class="summ" data-value="' . $item[self::PRICE] . '">' . number_format($summ, 2, ',', ' ') . __('USD', 'simple_basket') . '</td></tr>'; 
 			$total += $summ;
 		}
 		$output .= '</tbody><tfoot>' . 
-						'<tr><td class="title" rowspan="3">' . __('Total', 'simple_basket') . '</td>' .
-						'<td class="summ" data-value="' . $total . '">' . number_format($total, 2, ',', ' ') . '</td></tr>';
+						'<tr><td class="title">' . __('Total', 'simple_basket') . '</td>' .
+						'<td class="summ"  colspan="3" data-value="' . $total . '">' . number_format($total, 2, ',', ' ') . __('USD', 'simple_basket') . '</td></tr>';
 		$output .= '</tfoot></table><!--/.basket-->';
+		return $output;
 	 }
-
-
-
-
 }
 
 ?>

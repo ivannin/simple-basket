@@ -2,7 +2,6 @@
 // Параметры плагина
 add_option('simple_basket_buynow_caption', __('Buy', 'simple_basket'));
 add_option('simple_basket_order_page', '');
-add_option('simple_basket_catalog_id', __('product', 'simple_basket'));
 add_option('simple_basket_catalog_price', __('Price', 'simple_basket'));
 add_option('simple_basket_delivery', '0');
 add_option('simple_basket_delivery_default', '0');
@@ -14,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	if (isset($_POST['buynowcaption']))
 		update_option('simple_basket_buynow_caption', $_POST['buynowcaption']);
 
-	if (isset($_POST['catalogid']))
-		update_option('simple_basket_catalog_id', $_POST['catalogid']);
+	if (isset($_POST['orderpage']))
+		update_option('simple_basket_order_page', $_POST['orderpage']);
 
 	if (isset($_POST['pricefield']))
 		update_option('simple_basket_catalog_price', $_POST['pricefield']);
@@ -31,9 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	if (isset($_POST['googleanalyticsmode']))
 		update_option('simple_basket_google_analytics_mode', $_POST['googleanalyticsmode']);
 
-	// Перезапрос страницы
-	//header('Location: ' . $_SERVER['PHP_SELF']);
-	//exit;
 }
 
 
@@ -95,21 +91,16 @@ function showSelected($current=0, $setting=0)
 			<div>
 				<label for="buyNowCaption"><?php _e('Buy Now Button Caption', 'simple_basket')?></label>
 				<input id="buyNowCaption" type="text" name="buynowcaption" value="<?php echo get_option('simple_basket_buynow_caption'); ?>" />
-				<p><?php _e('This parameter specifies the caption on the buttom [Buy]. To display this button use shortcode [buy-now]', 'simple_basket')?></p>
+				<p><?php _e('This parameter specifies the caption on the buttom [Buy]. To display this button use shortcode [buy-now] or call function &lt;?php showBuyNowButton() ?&gt;', 'simple_basket')?></p>
 			</div>
 			<div>
-				<label for="buyNowCaption"><?php _e('Order Page', 'simple_basket')?></label>
-				<input id="buyNowCaption" type="text" name="buynowcaption" value="<?php echo get_option('simple_basket_order_page'); ?>" />
+				<label for="orderPage"><?php _e('Order Page', 'simple_basket')?></label>
+				<input id="orderPage" type="text" name="orderpage" value="<?php echo get_option('simple_basket_order_page'); ?>" />
 				<p><?php _e('This parameter specifies the URL of page contains order form. To display thу order form use shortcode [order-form]', 'simple_basket')?></p>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend><?php _e('Product Catalog', 'simple_basket')?></legend>
-			<div>
-				<label for="catalogType"><?php _e('Catalog Post Type', 'simple_basket')?></label>
-				<input id="catalogType" type="text" name="catalogid" value="<?php echo get_option('simple_basket_catalog_id'); ?>" />
-				<p><?php _e('This parameter specifies product post type.', 'simple_basket')?></p>
-			</div>
 			<div>
 				<label for="priceCustomFiled"><?php _e('Price Custom Field', 'simple_basket')?></label>
 				<input id="priceCustomFiled" type="text" name="pricefield" value="<?php echo get_option('simple_basket_catalog_price'); ?>" />

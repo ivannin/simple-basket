@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SimpleBasket\n"
-"POT-Creation-Date: 2013-06-21 21:22+0400\n"
-"PO-Revision-Date: 2013-06-21 21:34+0400\n"
+"POT-Creation-Date: 2013-06-23 13:53+0400\n"
+"PO-Revision-Date: 2013-06-23 13:53+0400\n"
 "Last-Translator: Иван Никитин <ivan@nikitin.org>\n"
 "Language-Team: IvanNikitin <ivan@nikitin.org>\n"
 "Language: ru_RU\n"
@@ -17,91 +17,96 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../delivery.php:8
+#: ../buy-now.php:23 ../buy-now.php:26 ../order-form.php:291
+msgid "Basket"
+msgstr "Корзина"
+
+#: ../buy-now.php:23 ../buy-now.php:26
+msgid "Add to basket"
+msgstr "Добавить в корзину"
+
+#: ../delivery.php:11
 msgid "Delivery Types"
 msgstr "Типы доставки"
 
-#: ../delivery.php:9
+#: ../delivery.php:12
 msgid "Delivery Type"
 msgstr "Тип доставки"
 
-#: ../delivery.php:10 ../options.php:120
+#: ../delivery.php:13 ../options.php:111
 msgid "Delivery"
 msgstr "Доставка"
 
-#: ../delivery.php:11
+#: ../delivery.php:14
 msgid "Parent Delivery Type:"
 msgstr "Родительский тип:"
 
-#: ../delivery.php:12
+#: ../delivery.php:15
 msgid "All Delivery Types"
 msgstr "Все типы"
 
-#: ../delivery.php:13
+#: ../delivery.php:16
 msgid "View Delivery Types"
 msgstr "Просмотр типа"
 
-#: ../delivery.php:14
+#: ../delivery.php:17
 msgid "Add New Delivery Type"
 msgstr "Добавить новый тип"
 
-#: ../delivery.php:15
+#: ../delivery.php:18
 msgid "New Delivery Type"
 msgstr "Новый тип"
 
-#: ../delivery.php:16
+#: ../delivery.php:19
 msgid "Edit Delivery Type"
 msgstr "Редактировать тип"
 
-#: ../delivery.php:17
+#: ../delivery.php:20
 msgid "Update Delivery Type"
 msgstr "Обновить тип"
 
-#: ../delivery.php:18
+#: ../delivery.php:21
 msgid "Search delivery type"
 msgstr "Поиск типов"
 
-#: ../delivery.php:19
+#: ../delivery.php:22
 msgid "No delivery types found"
 msgstr "Типы доставки не найдены"
 
-#: ../delivery.php:20
+#: ../delivery.php:23
 msgid "No delivery types found in Trash"
 msgstr "Нет удаленных типов доставки"
 
-#: ../delivery.php:24
+#: ../delivery.php:27
 msgid "delivery"
 msgstr "delivery"
 
-#: ../delivery.php:25
+#: ../delivery.php:28
 msgid "Delivery types"
 msgstr "Типы доставки"
 
-#: ../delivery.php:68 ../delivery.php:81
+#: ../delivery.php:71 ../delivery.php:84 ../delivery.php:98 ../delivery.php:99
 msgid "Cost"
 msgstr "Стоимость"
 
-#: ../delivery.php:83
+#: ../delivery.php:86 ../order-form.php:164 ../order.php:211 ../order.php:212
+#: ../order.php:217
 msgid "USD"
-msgstr "руб."
+msgstr "&nbsp;руб."
 
 #: ../options.php:3
 msgid "Buy"
 msgstr "Купить"
 
-#: ../options.php:5
-msgid "product"
-msgstr "product"
-
-#: ../options.php:6 ../order.php:165
+#: ../options.php:5 ../order.php:198
 msgid "Price"
 msgstr "Цена"
 
-#: ../options.php:89 ../simple-basket.php:48
+#: ../options.php:85 ../simple-basket.php:42
 msgid "Simple Basket"
 msgstr "Корзина"
 
-#: ../options.php:91
+#: ../options.php:87
 msgid ""
 "Please change the settings with caution. It is better to go to a technical "
 "expert."
@@ -109,27 +114,29 @@ msgstr ""
 "Пожалуйста, изменяйте параметры с осторожностью. Лучше обратиться к "
 "техническому эксперту."
 
-#: ../options.php:94
+#: ../options.php:90
 msgid "Basket Options"
 msgstr "Параметры корзины"
 
-#: ../options.php:96
+#: ../options.php:92
 msgid "Buy Now Button Caption"
 msgstr "Надпись на кнопке"
 
-#: ../options.php:98
+#: ../options.php:94
 msgid ""
 "This parameter specifies the caption on the buttom [Buy]. To display this "
-"button use shortcode [buy-now]"
+"button use shortcode [buy-now] or call function &lt;?php showBuyNowButton() ?"
+"&gt;"
 msgstr ""
 "Этот параметр задает надпись на кнопке [Купить]. Для вывода кнопки "
-"используется шорткод [buy-now]"
+"используется шорткод [buy-now] или вызов функции &lt;?php showBuyNowButton"
+"() ?&gt;"
 
-#: ../options.php:101
+#: ../options.php:97
 msgid "Order Page"
 msgstr "Страница с формой заказа"
 
-#: ../options.php:103
+#: ../options.php:99
 msgid ""
 "This parameter specifies the URL of page contains order form. To display thу "
 "order form use shortcode [order-form]"
@@ -137,40 +144,30 @@ msgstr ""
 "Этот параметр задает URL страницы с формой заказа. Для вывода формы заказа "
 "используется шорткод [order-form]"
 
-#: ../options.php:107
+#: ../options.php:103
 msgid "Product Catalog"
 msgstr "Каталог продуктов"
 
-#: ../options.php:109
-msgid "Catalog Post Type"
-msgstr "Тип записей каталога продуктов"
-
-#: ../options.php:111
-msgid "This parameter specifies product post type."
-msgstr ""
-"Этот параметр задает тип записей каталога продктов. Обратитесь к "
-"разработчику Вашей темы для разъяснений."
-
-#: ../options.php:114
+#: ../options.php:105
 msgid "Price Custom Field"
 msgstr "Поле Цена"
 
-#: ../options.php:116
+#: ../options.php:107
 msgid ""
 "This parameter specifies the name of product custom field that contains the "
 "price."
 msgstr ""
 "Этот параметр задает название настраиваемого поля, содержащего цену продукта."
 
-#: ../options.php:122
+#: ../options.php:113
 msgid "Paid Delivery"
 msgstr "Доставка"
 
-#: ../options.php:126
+#: ../options.php:117
 msgid "My shop has different paid delivery plans."
 msgstr "Мой магазин использует оплачиваемые планы доставки."
 
-#: ../options.php:127
+#: ../options.php:118
 msgid ""
 "After change this mode you must update settings at <a href=\"/wp-admin/"
 "options-permalink.php\">permalink options page</a>."
@@ -179,36 +176,36 @@ msgstr ""
 "options-permalink.php\">Постоянные ссылки</a> и нажмите там кнопку "
 "[Сохранить изменения]."
 
-#: ../options.php:130
+#: ../options.php:121
 msgid "Default Delivery Plan"
 msgstr "План доставки по умолчанию"
 
-#: ../options.php:135 ../options.php:149
+#: ../options.php:124 ../options.php:148
 msgid "None"
 msgstr "Нет"
 
-#: ../options.php:137
+#: ../options.php:136
 msgid "This parameter specifies the default delivery plan at customer order."
 msgstr ""
 "Этот параметр устанавливает доставку по умолчанию в заказе пользователя."
 
-#: ../options.php:142
+#: ../options.php:141
 msgid "Google Analytics"
 msgstr "Google Analytics"
 
-#: ../options.php:144
+#: ../options.php:143
 msgid "Google Analytics intergation"
 msgstr "Интеграция с Google Analytics"
 
-#: ../options.php:150
+#: ../options.php:149
 msgid "Google Analytics (ga.js)"
 msgstr "Google Analytics (ga.js)"
 
-#: ../options.php:151
+#: ../options.php:150
 msgid "Universal Analytics (analytics.js)"
 msgstr "Universal Analytics (analytics.js)"
 
-#: ../options.php:153
+#: ../options.php:152
 msgid ""
 "This parameter specifies the integration mode with Google Analytits. This "
 "option adds the necessary tracking code to the page \"Thanks for your "
@@ -220,33 +217,217 @@ msgstr ""
 "Для корректной работы должен быть включен электронной коммерции  в профиле "
 "Google Analytics."
 
-#: ../options.php:158
+#: ../options.php:157
 msgid "Update settings"
 msgstr "Сохранить"
 
-#: ../order.php:163
-msgid "Title"
-msgstr "Наименование"
+#: ../order-form.php:29 ../order-form.php:31 ../order-form.php:45
+msgid "Orders"
+msgstr "Заказы"
 
-#: ../order.php:164
-msgid "Quo"
-msgstr "Количество"
+#: ../order-form.php:30 ../order-form.php:44
+msgid "Order"
+msgstr "Заказ"
 
-#: ../order.php:166
+#: ../order-form.php:32
+msgid "All orders"
+msgstr "Все заказы"
+
+#: ../order-form.php:33
+msgid "View orders"
+msgstr "Просмотр заказов"
+
+#: ../order-form.php:34
+msgid "Add new order"
+msgstr "Добавить новый заказ"
+
+#: ../order-form.php:35
+msgid "New order"
+msgstr "Новый заказ"
+
+#: ../order-form.php:36
+msgid "Edit order"
+msgstr "Редактировать"
+
+#: ../order-form.php:37
+msgid "Update order"
+msgstr "Обновить заказ"
+
+#: ../order-form.php:38
+msgid "Search order"
+msgstr "Поиск заказов"
+
+#: ../order-form.php:39
+msgid "No orders found"
+msgstr "Заказы не найдены"
+
+#: ../order-form.php:40
+msgid "No orders found in Trash"
+msgstr "Нет удаленных заказов"
+
+#: ../order-form.php:86
+msgid "Statuses"
+msgstr "Статус"
+
+#: ../order-form.php:87 ../order-form.php:88
+msgid "Status"
+msgstr "Статус"
+
+#: ../order-form.php:89
+msgid "All Statuses"
+msgstr "Все статусы"
+
+#: ../order-form.php:90
+msgid "Parent Status"
+msgstr "Родительский статус"
+
+#: ../order-form.php:91
+msgid "Parent Status:"
+msgstr "Родительский статус:"
+
+#: ../order-form.php:92
+msgid "New Status Name"
+msgstr "Название нового статуса"
+
+#: ../order-form.php:93
+msgid "Add New Status"
+msgstr "Добавить статус"
+
+#: ../order-form.php:94
+msgid "Edit Status"
+msgstr "Редактировать"
+
+#: ../order-form.php:95
+msgid "Update Status"
+msgstr "Обновить"
+
+#: ../order-form.php:96
+msgid "Separate statuses with commas"
+msgstr "Отделяйте статусы запятыми"
+
+#: ../order-form.php:97
+msgid "Search statuses"
+msgstr "Поиск статусов"
+
+#: ../order-form.php:98
+msgid "Add or remove statuses"
+msgstr "Добавить или удалить статус"
+
+#: ../order-form.php:99
+msgid "Choose from the most used statuses"
+msgstr "Выберите самые часто используемые статусы"
+
+#: ../order-form.php:116
+msgid "New"
+msgstr "Новый"
+
+#: ../order-form.php:116
+msgid "New Order"
+msgstr "Новый заказ"
+
+#: ../order-form.php:117
+msgid "In Process"
+msgstr "На исполнении"
+
+#: ../order-form.php:117
+msgid "Order In Process"
+msgstr "Заказ в исполнении"
+
+#: ../order-form.php:118
+msgid "Completed"
+msgstr "Выполнен"
+
+#: ../order-form.php:118
+msgid "Order Completed"
+msgstr "Заказ выполнен"
+
+#: ../order-form.php:119
+msgid "Canceled"
+msgstr "Отказались"
+
+#: ../order-form.php:119
+msgid "Order Canceled"
+msgstr "Заказчик отказался от заказа"
+
+#: ../order-form.php:147
+msgid "Order Code"
+msgstr "Код заказа"
+
+#: ../order-form.php:148
+msgid "Customer"
+msgstr "Заказчик"
+
+#: ../order-form.php:151 ../order-form.php:162 ../order-form.php:175
+#: ../order.php:199
 msgid "Summ"
 msgstr "Сумма"
 
-#: ../order.php:182
+#: ../order-form.php:294
+msgid "Customer Info"
+msgstr "Ваши данные"
+
+#: ../order-form.php:298 ../order-form.php:299
+msgid "Your Name"
+msgstr "Ваше имя"
+
+#: ../order-form.php:302 ../order-form.php:303
+msgid "Your E-mail"
+msgstr "Ваш E-mail"
+
+#: ../order-form.php:306
+msgid "Your Phone"
+msgstr "Ваш телефон"
+
+#: ../order-form.php:307
+msgid "+XXXXXXXXXXX"
+msgstr "+XXXXXXXXXXX"
+
+#: ../order-form.php:310
+msgid "Shipping Address"
+msgstr "Адрес доставки"
+
+#: ../order-form.php:311
+msgid "Shipping address and other comments"
+msgstr "Адрес доставки и пожелания по доставке"
+
+#: ../order-form.php:313
+msgid "Checkout Order"
+msgstr "Офорить заказ"
+
+#: ../order-form.php:342
+msgid "Update"
+msgstr "Пересчитать"
+
+#: ../order.php:196
+msgid "Title"
+msgstr "Наименование"
+
+#: ../order.php:197
+msgid "Quo"
+msgstr "Количество"
+
+#: ../order.php:216
 msgid "Total"
 msgstr "Итого"
 
-#: ../simple-basket.php:48
+#: ../simple-basket.php:42
 msgid "Simple Basket Options"
 msgstr "Параметры корзины"
 
-#: ../simple-basket.php:55
+#: ../simple-basket.php:49
 msgid "You do not have sufficient permissions to access this page."
 msgstr "У вас нет разрешений на доступ к этой странице."
+
+#~ msgid "product"
+#~ msgstr "product"
+
+#~ msgid "Catalog Post Type"
+#~ msgstr "Тип записей каталога продуктов"
+
+#~ msgid "This parameter specifies product post type."
+#~ msgstr ""
+#~ "Этот параметр задает тип записей каталога продктов. Обратитесь к "
+#~ "разработчику Вашей темы для разъяснений."
 
 #~ msgid "Buy Now Button"
 #~ msgstr "Кнопка Купить"
