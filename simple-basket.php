@@ -84,5 +84,12 @@ function simple_basket_externals()
     wp_enqueue_style('simple-basket' );
 }
 
+// Для почты
+function simple_basket_set_html_content_type()
+{
+	return 'text/html';
+}
+
+
 
 ?>

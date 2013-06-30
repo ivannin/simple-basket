@@ -6,6 +6,9 @@ add_option('simple_basket_catalog_price', __('Price', 'simple_basket'));
 add_option('simple_basket_delivery', '0');
 add_option('simple_basket_delivery_default', '0');
 add_option('simple_basket_google_analytics_mode', '0');
+add_option('simple_basket_conformation_email_post', '');
+add_option('simple_basket_admin_email_post', '');
+
 
 // Принимаем данные
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -30,6 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	if (isset($_POST['googleanalyticsmode']))
 		update_option('simple_basket_google_analytics_mode', $_POST['googleanalyticsmode']);
 
+	if (isset($_POST['confirmemail']))
+		update_option('simple_basket_conformation_email_post', $_POST['confirmemail']);
+
+	if (isset($_POST['adminemail']))
+		update_option('simple_basket_admin_email_post', $_POST['adminemail']);
 }
 
 
@@ -60,7 +68,7 @@ function showSelected($current=0, $setting=0)
 #simple_basket fieldset div:not(:last-child) {
 	border-bottom: 1px dotted gray;
 }
-#simple_basket fieldset div p {
+#simple_basket fieldset div p, #simple_basket fieldset div li {
 	margin-left:  160px;
 }	
 #simple_basket label {
@@ -150,6 +158,34 @@ function showSelected($current=0, $setting=0)
 					<option value="2"<?php showSelected(2, $gaMode)?>><?php _e('Universal Analytics (analytics.js)', 'simple_basket')?></option>
 				</select>
 				<p><?php _e('This parameter specifies the integration mode with Google Analytits. This option adds the necessary tracking code to the page "Thanks for your purchase". For correct intergation e-commerce mode must be enabled at Google Analytics profile options.', 'simple_basket')?></p>
+			</div>
+		</fieldset>	
+
+		<fieldset>
+			<legend><?php _e('Confirmation E-mail', 'simple_basket')?></legend>
+			<div>
+				<label for="confirmationEmail"><?php _e('User E-mail Post Label', 'simple_basket')?></label>
+				<input id="confirmationEmail" type="text" name="confirmemail" value="<?php echo get_option('simple_basket_conformation_email_post'); ?>" />
+				<p>&nbsp;</p>
+			</div>
+			<div>
+				<label for="adminEmail"><?php _e('Admin E-mail Post Label', 'simple_basket')?></label>
+				<input id="adminEmail" type="text" name="adminemail" value="<?php echo get_option('simple_basket_admin_email_post'); ?>" />
+				<p>&nbsp;</p>			
+			</div>
+			<div>
+				<?php _e('<p>This parameters specify the label of post with user confirmation e-mail text.<br> ' .  
+							'Create the new post, set the status DRAFT and specify the post label at this field.<br/> ' .  
+							'If this paramater is empty no e-mail will send to user.<br/> '.
+							'You may user the following short codes:</p><ul> ' . 
+							'<li>[order-code] - the order code</li>' .
+							'<li>[order-customer] - the customer name </li>' .
+							'<li>[order-email] - the customer E-mail </li>' .
+							'<li>[order-phone] - the customer phone number </li>' .
+							'<li>[order-comment] - the order comment </li>' .
+							'<li>[order-items] - the table with order items</li>' .
+							'</ul>', 'simple_basket')?>
+
 			</div>
 		</fieldset>	
 

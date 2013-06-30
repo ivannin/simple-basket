@@ -25,20 +25,6 @@ class SimpleBasketOrder
 		return self::$instance;
 	 }
 
-	/**
-	 * Добавляет в заказ очередной элемент
-	 * @param string title наименование товара
-	 * @param float price цена товара
-	 * @param string category категория товара
-	 * @static
-	 */
-	 public static function addItem($id, $title, $price, $category='')
-	 {
-		$order = self::create();
-		$order->add($id, $title, $price, $category);
-	 }
-
-
 	/* ------------------- Определения класса  ---------------------- */	
 	const ITEMS			= 'SIMPLE_BASKET_ITEMS';
 	const TITLE			= 'SIMPLE_BASKET_TITLE';
@@ -55,7 +41,7 @@ class SimpleBasketOrder
 	 * Элементы заказа
 	 * @var mixed
 	 */
-	 private $items;
+	 public $items;
 
 
 	/**
@@ -63,14 +49,12 @@ class SimpleBasketOrder
 	 */
 	 private function __construct()
 	 {
-	 	// Гарантированно начнем сессию
-		// @session_start();
 		$this->items = (isset($_SESSION[self::ITEMS])) ? $_SESSION[self::ITEMS] : array();
 		$this->userName = (isset($_SESSION[self::USER_NAME])) ? $_SESSION[self::USER_NAME] : '';
 		$this->userEmail = (isset($_SESSION[self::USER_EMAIL])) ? $_SESSION[self::USER_EMAIL] : '';
 		$this->userPhone = (isset($_SESSION[self::USER_PHONE])) ? $_SESSION[self::USER_PHONE] : '';
 		$this->userComment = (isset($_SESSION[self::USER_COMMENT])) ? $_SESSION[self::USER_COMMENT] : '';
-
+		$this->errorMessages = array();
 	 }
 
 	/**
@@ -105,41 +89,92 @@ class SimpleBasketOrder
 	 * @var string
 	 */
 	 public $userComment;
+	/**
+	 * Сообщение об ошибке
+	 * @var string
+	 */
+	 public $errorMessages;
 
 	/**
-	 * Схраняет данные пользователя
+	 * Сохраняет данные пользователя
 	 * @param string name наименование товара
 	 * @param string email наименование товара
 	 * @param string phone наименование товара
 	 * @param string comment наименование товара
 	 */
-	 public function setUserData($name, $email, $phone, $comment='')
-	 {
+	public function setUserData($name, $email, $phone, $comment='')
+	{
 		$this->userName = $name;
 		$this->userEmail = $email;
 		$this->userPhone = $phone;
 		if (!empty($comment)) $this->userComment = $comment;
-	 }
+	}
+	/**
+	 * Проверка что в корзине есть товары
+	 * @return bool true - товаров нет
+	 */
+	public function isEmpty()
+	{
+		return (count($this->items) == 0);
+	}
+
 
 	/**
-	 * Очистка заказа
+	 * Проверка к готовности заказа
+	 * @return bool true - заказ можно оформлять
 	 */
-	 public function clear()
-	 {
-		 $this->items = array();
-		 $this->userComment = '';
-	 }
+	public function isValid()
+	{
+		$this->errorMessages = array();
+		
+		// Заполнение полей
+		if (empty($this->userName) || empty($this->userEmail) || empty($this->userPhone))
+			$this->errorMessages[] = __('Please enter required data!', 'simple_basket');
+
+		// Правильность E-mail
+		if (!preg_match('/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/', $this->userEmail))
+			$this->errorMessages[] = __('Please specify correct E-mail!', 'simple_basket');
+
+		// Правильность телефона
+		if (!preg_match('/^\+[ \-\(\)0-9]{12,20}$/', $this->userPhone))
+			$this->errorMessages[] = __('Please specify correct phone!', 'simple_basket');
+			
+		// В корзине есть товары
+		if ($this->isEmpty())
+			$this->errorMessages[] = __('Basket is empty.', 'simple_basket');
+
+		return (count($this->errorMessages) == 0);
+	}	
+
+
 
 	/* ------------------- Работа с корзиной  ---------------------- */
 	/**
 	 * Добавляет в заказ очередной элемент
-	 * @param int id Код продукта
+	 * @param string id Код продукта
 	 * @param string title наименование товара
 	 * @param float price цена товара
 	 * @param string category категория товара
 	 */
 	 public function add($id, $title, $price, $category='')
 	 {
+		
+		// Нормализуем цену
+		$price = (float) preg_replace(
+			// patterns
+			array(
+				'/' . addslashes(__('USD', 'simple_basket')) . '/',
+				'/[\s]/',
+				'/,/'
+			),
+			// replacements
+			array(
+				'',
+				'',
+				'.'
+			),
+			$price
+		);
 		
 		// Если такой элемент уже есть...
 		if (array_key_exists($id, $this->items))
@@ -160,10 +195,10 @@ class SimpleBasketOrder
 		}
 
 	 }
-	/* ------------------- Работа с корзиной  ---------------------- */
+
 	/**
 	 * Обновляем в заказе количество элементов
-	 * @param int id Код продукта
+	 * @param string id Код продукта
 	 * @param int quo Число товаров
 	 */
 	 public function update($id, $quo)
@@ -183,6 +218,15 @@ class SimpleBasketOrder
 				$this->items[$id][self::QUO] = $quo;				
 			}
 		}
+	 }
+
+	/**
+	 * Очистка заказа
+	 */
+	 public function clear()
+	 {
+		 $this->items = array();
+		 $this->userComment = '';
 	 }
 
 	/**
@@ -218,6 +262,20 @@ class SimpleBasketOrder
 		$output .= '</tfoot></table><!--/.basket-->';
 		return $output;
 	 }
+
+	/**
+	 * Возвращает общую сумму заказа
+	 * @return float сумма заказа
+	 */
+	 public function getTotal()
+	 {
+	 	$total = 0;
+		foreach ($this->items as $id=>$item)
+			$total += $item[self::QUO] * $item[self::PRICE];
+		return $total;
+	 }
+
+
 }
 
 ?>

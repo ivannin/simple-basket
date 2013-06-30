@@ -1,5 +1,5 @@
 <?php
-define('SIMPLE_BASKET_DELIVERY', 'delivery');	
+define('SIMPLE_BASKET_DELIVERY', 'delivery');
 
 // Hook into the 'init' action
 add_action( 'init', 'createDeliveryPostType', 0 );
