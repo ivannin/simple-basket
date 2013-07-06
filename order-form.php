@@ -298,8 +298,7 @@ class SimpleBasketOrderForm
 			// Добавляем в корзину
 			if (!empty($title)) $this->basket->add($id, $title, $price, $category);
 			// Переходим на корзину
-			wp_redirect($this->basketURL);
-			exit;
+			simple_basket_redirect($this->basketURL);
 		}
 
 		// Обработка обновления количества товаров
@@ -314,8 +313,7 @@ class SimpleBasketOrderForm
 				}
 			}
 			// Переходим на корзину
-			wp_redirect($this->basketURL);
-			exit;
+			simple_basket_redirect($this->basketURL);
 		}
 
 		// Обработка нового заказа
@@ -545,10 +543,11 @@ class SimpleBasketOrderForm
 		// Начало вывода
 		$output = '<div class="simple-basket-order-form">';
 		// Вывод корзины
-		$output .= '<h3>' . __('Basket', 'simple_basket') . '</h3>' . 
-			$this->getBasketHTML();
+		$output .= '<div id="basketForm"><h3>' . __('Basket', 'simple_basket') . '</h3>' . 
+			$this->getBasketHTML()
+			. '</div><!--/basketForm-->';
 		// Вывод формы заказа
-		$output .= '<h3>' . __('Customer Info', 'simple_basket') . '</h3>' . 
+		$output .= '<div id="orderForm"><h3>' . __('Customer Info', 'simple_basket') . '</h3>' . 
 			'<form class="orderForm" action="' . $this->basketURL . '" method="post">' . 
 				'<input type="hidden" name="' . SIMPLE_BASKET_MODE . '" value="' . SIMPLE_BASKET_CHECKOUT . '" />' .
 				'<div>' . 
@@ -598,7 +597,7 @@ class SimpleBasketOrderForm
 				'<div class="buttons"><button class="checkout" type="submit">' . __('Checkout Order', 'simple_basket') . '</button></div>' .
 			'</form>';
 		// Конец вывода
-		$output .= '</div><!--/simple-basket-order-form-->';
+		$output .= '</div><!--/orderForm--></div><!--/simple-basket-order-form-->';
 
 		// Если есть ошибки - выводим ошибки
 		if (count($this->basket->errorMessages > 0))

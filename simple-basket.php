@@ -90,6 +90,20 @@ function simple_basket_set_html_content_type()
 	return 'text/html';
 }
 
+/**
+* Вместо wp_redirect() используем свою функцию, так как
+* скорее всего git добавил концы строк в файлы и wp_redirect() не работает (был начат вывод страницы).
+* Разбираться лениво, поэтому делаю переадресацию скриптом JavaScript.
+*/
+function simple_basket_redirect($url)
+{
+	echo "<script>location.assign('$url');</script>";
+	exit;
+
+}
+
+
+
 
 
 ?>
