@@ -568,7 +568,7 @@ class SimpleBasketOrderForm
 						
 			$output .=	
 				'<div>' . 
-					'<label for="' . self::USER_SHIPPING_TYPE . '">' . __('Shipping', 'simple_basket') . '</label>' .
+					'<label for="' . self::USER_SHIPPING_TYPE . '">' . __('Shipping Type', 'simple_basket') . '</label>' .
 					'<select id="' . self::USER_SHIPPING_TYPE . '" name="' . self::USER_SHIPPING_TYPE . '">';
 			$args = array('post_type' => 'delivery');
 			$deliveryType = new WP_Query($args);
