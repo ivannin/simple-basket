@@ -97,13 +97,8 @@ function simple_basket_set_html_content_type()
 */
 function simple_basket_redirect($url)
 {
-	echo "<script>location.assign('$url');</script>";
+	echo "<script>location.replace('$url');</script>";
 	exit;
 
 }
-
-
-
-
-
 ?>
