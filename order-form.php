@@ -560,7 +560,7 @@ class SimpleBasketOrderForm
 				'</div>' .
 				'<div>' . 
 					'<label for="' . self::USER_PHONE . '">' . __('Your Phone', 'simple_basket') . '</label>' .
-					'<input id="' . self::USER_PHONE . '" type="tel" name="' . self::USER_PHONE . '" value="' . $this->basket->userPhone . '" required="required" placeholder="' . __('+XXXXXXXXXXX', 'simple_basket') . '" pattern="^\+[ \-\(\)0-9]{12,20}$" />' .
+					'<input id="' . self::USER_PHONE . '" type="tel" name="' . self::USER_PHONE . '" value="' . $this->basket->userPhone . '" required="required" placeholder="' . __('+XXXXXXXXXXX', 'simple_basket') . '" />' .
 				'</div>';
 		// Если есть доставка, учитываем его
 		if (get_option('simple_basket_delivery') == '1')
