@@ -3,7 +3,7 @@
 Plugin Name: Simple basket
 Plugin URI: https://github.com/ivannin/simple-basket
 Description: Простая корзина для Wordpress
-Version: 0.2
+Version: 0.3
 Author: Иван Никитин
 Author URI: http://ivannikitin.com
 License:
@@ -36,7 +36,11 @@ function simple_basketInit()
 	// Режим и типы доставки
 	if (get_option('simple_basket_delivery') == '1')
 		include(plugin_dir_path(__FILE__).'delivery.php');
+}
 
+add_action( 'init', 'github_simple_basket_updater_init' );
+function github_simple_basket_updater_init()
+{
 	// Обновление с github
 	include_once 'updater.php';
 
@@ -59,11 +63,11 @@ function simple_basketInit()
 			'access_token' => '',
 		);
 		new WP_GitHub_Updater( $config );
-
-	}
-
-
+	}	
 }
+
+
+
 
 // ---------------- Страница параметров плагина ----------------
 add_action( 'admin_menu', 'simple_basketCreateAdminMenu' );
