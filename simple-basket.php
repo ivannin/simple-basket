@@ -59,7 +59,12 @@ function simple_basketInit()
 			'access_token' => '',
 		);
 		new WP_GitHub_Updater( $config );
+
 	}
+
+
+
+
 }
 
 // ---------------- Страница параметров плагина ----------------
