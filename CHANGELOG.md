@@ -1,5 +1,6 @@
 Simple Basket
 =============
+~Current Version:0.3~
 
 Плагин реализации простой корзины в Wordpress
 
