@@ -1,6 +1,6 @@
 Simple Basket
 =============
-~Current Version:1.4~
+~Current Version:0.2~
 
 
 ## Назначение плагина
