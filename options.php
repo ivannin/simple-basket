@@ -190,7 +190,7 @@ function showSelected($current=0, $setting=0)
 		</fieldset>	
 
 		<div>
-			<button type="submit"><?php _e('Update settings', 'simple_basket')?></button>
+			<button class="button button-primary" type="submit"><?php _e('Update settings', 'simple_basket')?></button>
 		</div>
 	</form>
 </div>
