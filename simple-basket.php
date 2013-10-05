@@ -41,6 +41,9 @@ function simple_basketInit()
 add_action( 'init', 'github_simple_basket_updater_init' );
 function github_simple_basket_updater_init()
 {
+	// Запуск сессии
+	@session_start();
+	
 	// Обновление с github
 	include_once 'updater.php';
 
