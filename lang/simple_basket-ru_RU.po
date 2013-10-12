@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SimpleBasket\n"
-"POT-Creation-Date: 2013-07-07 20:05+0400\n"
-"PO-Revision-Date: 2013-07-07 20:06+0400\n"
+"POT-Creation-Date: 2013-10-12 13:28+0400\n"
+"PO-Revision-Date: 2013-10-12 13:34+0400\n"
 "Last-Translator: Иван Никитин <ivan@nikitin.org>\n"
 "Language-Team: IvanNikitin <ivan@nikitin.org>\n"
 "Language: ru_RU\n"
@@ -103,7 +103,7 @@ msgstr "Купить"
 msgid "Price"
 msgstr "Цена"
 
-#: ../options.php:93 ../simple-basket.php:42
+#: ../options.php:93 ../simple-basket.php:78
 msgid "Simple Basket"
 msgstr "Корзина"
 
@@ -434,8 +434,8 @@ msgid "Your Phone"
 msgstr "Ваш телефон"
 
 #: ../order-form.php:563
-msgid "+XXXXXXXXXXX"
-msgstr "+XXXXXXXXXXX"
+msgid "+XXXXXXXXXX"
+msgstr "+XXXXXXXXXX"
 
 #: ../order-form.php:571
 msgid "Shipping Type"
@@ -485,13 +485,23 @@ msgstr "Количество"
 msgid "Total"
 msgstr "Итого"
 
-#: ../simple-basket.php:42
+#: ../simple-basket.php:78
 msgid "Simple Basket Options"
 msgstr "Параметры корзины"
 
-#: ../simple-basket.php:49
+#: ../simple-basket.php:85
 msgid "You do not have sufficient permissions to access this page."
 msgstr "У вас нет разрешений на доступ к этой странице."
+
+#: ../updater.php:420
+msgid ""
+"The plugin has been updated, but could not be reactivated. Please reactivate "
+"it manually."
+msgstr ""
+
+#: ../updater.php:421
+msgid "Plugin reactivated successfully."
+msgstr ""
 
 #~ msgid "product"
 #~ msgstr "product"

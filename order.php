@@ -136,7 +136,7 @@ class SimpleBasketOrder
 			$this->errorMessages[] = __('Please specify correct E-mail!', 'simple_basket');
 
 		// Правильность телефона
-		if (!preg_match('/^\+[ \-\(\)0-9]{12,20}$/', $this->userPhone))
+		if (!preg_match('/^\+?[ \-\(\)0-9]{11,20}$/', $this->userPhone))
 			$this->errorMessages[] = __('Please specify correct phone!', 'simple_basket');
 			
 		// В корзине есть товары
