@@ -24,12 +24,13 @@ License:
 ================================================================================
 */
 
-
-
 // ------------------------- Инициализация -------------------------
 add_action('plugins_loaded', 'simple_basketInit');
 function simple_basketInit() 
 {
+	// Старт сессии
+	@session_start();
+	
 	// Локализация
 	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
 
