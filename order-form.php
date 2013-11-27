@@ -19,8 +19,10 @@ function getOrderForm($atts)
 
 
 	// Покажем форму
-	return $orderForm->getHTML();
+	return // '<pre>' . session_id() . '<br>' . $_SESSION . '</pre>' . 
+		$orderForm->getHTML();
 }
+
 
 // ---------------------- Регистрация типа данных ----------------------
 define('SIMPLE_BASKET_ORDER_TYPE', 'simple_basket_order');

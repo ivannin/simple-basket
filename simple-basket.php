@@ -23,14 +23,14 @@ License:
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ================================================================================
 */
+// Старт сессии
+@session_start();
+
 
 // ------------------------- Инициализация -------------------------
 add_action('plugins_loaded', 'simple_basketInit');
 function simple_basketInit() 
 {
-	// Старт сессии
-	@session_start();
-	
 	// Локализация
 	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
 
@@ -66,6 +66,8 @@ define('SIMPLE_BASKET_MODE',		'mode');
 require(plugin_dir_path(__FILE__) . 'order.php');
 require(plugin_dir_path(__FILE__) . 'buy-now.php');
 require(plugin_dir_path(__FILE__) . 'order-form.php');
+require(plugin_dir_path(__FILE__) . 'ajax-api.php');
+
 
 // ------------------- Некоторые общие функии ----------------
 // Возвращает значение произвольных полей
@@ -84,8 +86,8 @@ add_action('wp_enqueue_scripts', 'simple_basket_externals');
 function simple_basket_externals() 
 {
     // Respects SSL, Style.css is relative to the current file
-    wp_register_style('simple-basket', plugins_url('simple-basket.min.css', __FILE__) );
-    wp_enqueue_style('simple-basket' );
+    wp_register_style('simple-basket-css', plugins_url('css/simple-basket.min.css', __FILE__) );
+    wp_enqueue_style('simple-basket-css' );
 }
 
 // Для почты
@@ -101,7 +103,7 @@ function simple_basket_set_html_content_type()
 */
 function simple_basket_redirect($url)
 {
-	echo "<script>location.replace('$url');</script>";
+	echo "<script>console.log('$url');location.replace('$url');</script>";
 	exit;
 
 }
