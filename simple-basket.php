@@ -47,6 +47,27 @@ function simple_basketCreateAdminMenu() {
 		'manage_options', 'simple-baslet', 'simple_basketOptions' );
 }
 
+// ---------------- Загрузка нужных компонентов на страницу аминистрирования плагинов ----------------
+add_action('admin_print_scripts', 'simple_basket_adminJS' );
+function simple_basket_adminJS() 
+{
+	wp_enqueue_script('jquery-ui-tabs');
+    wp_enqueue_script('editor');
+    wp_enqueue_script('thickbox');
+    add_action( 'admin_head', 'wp_tiny_mce' );	
+}
+
+add_action('admin_print_styles', 'simple_basket_adminCSS' );
+function simple_basket_adminCSS() 
+{
+	wp_register_style('simple-basket-admin-css', plugins_url('css/simple-basket-admin.css', __FILE__));	
+	wp_register_style('simple-basket-admin-jquery-ui', 
+		'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css', 
+		null, '1.10.3');
+	wp_enqueue_style('simple-basket-admin-css');
+	wp_enqueue_style('simple-basket-admin-jquery-ui');
+}
+
 function simple_basketOptions() 
 {
 	if (!current_user_can( 'manage_options' ))
