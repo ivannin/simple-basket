@@ -1,0 +1,40 @@
+#simple_basket fieldset {
+	border:  1px solid gray;
+	border-radius: 4px;
+	padding:  10px;
+	margin-right:  10px;
+	margin-bottom:  10px;	
+}
+#simple_basket legend {
+	font-size: 14pt;
+	padding: 5px;
+}	
+#simple_basket fieldset div.control {
+	margin-bottom:  10px;
+	clear:  both;
+}
+#simple_basket fieldset div.control:not(:last-child) {
+	border-bottom: 1px dotted gray;
+}
+#simple_basket fieldset div.control p, #simple_basket fieldset div li {
+	margin-left:  160px;
+}	
+#simple_basket label {
+	display:  block;
+	float:  left;
+	width:  150px;
+	margin-right: 10px;
+	padding-top: 4px;
+	text-align: right;
+	font-weight: bold;
+}
+#simple_basket input.textString {
+	width:  50%;			
+}
+#simple_basket input[type="checkbox"] {
+	width:  20px;			
+}
+#footer-left, #footer-upgrade
+{
+	display: none;
+}
