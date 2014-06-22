@@ -33,7 +33,7 @@ function simple_basketInit()
 {
 	// Локализация
 	load_plugin_textdomain( 'simple_basket', false, basename(dirname(__FILE__)) . '/lang/' );
-
+	
 	// Режим и типы доставки
 	if (get_option('simple_basket_delivery') == '1')
 		include(plugin_dir_path(__FILE__).'delivery.php');
@@ -84,8 +84,9 @@ define('SIMPLE_BASKET_CHECKOUT',	'checkout');
 define('SIMPLE_BASKET_MODE',		'mode');
 
 // ----------------------- Подключения -----------------------
-require(plugin_dir_path(__FILE__) . 'order.php');
-require(plugin_dir_path(__FILE__) . 'buy-now.php');
+require(plugin_dir_path(__FILE__) . 'classes/SimpleBasketOrderForm.php');
+require(plugin_dir_path(__FILE__) . 'classes/SimpleBasketOrder.php');
+require(plugin_dir_path(__FILE__) . 'shortcodes.php');
 require(plugin_dir_path(__FILE__) . 'order-form.php');
 require(plugin_dir_path(__FILE__) . 'ajax-api.php');
 

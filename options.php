@@ -6,8 +6,11 @@ add_option('simple_basket_catalog_price', __('Price', 'simple_basket'));
 add_option('simple_basket_delivery', '0');
 add_option('simple_basket_delivery_default', '0');
 add_option('simple_basket_google_analytics_mode', '0');
+add_option('simple_basket_order_compete_virtual_page', '');
 add_option('simple_basket_conformation_email_post', '');
+add_option('simple_basket_conformation_email_subject', '');
 add_option('simple_basket_admin_email_post', '');
+add_option('simple_basket_admin_email_subject', '');
 
 
 // Принимаем данные
@@ -32,12 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	if (isset($_POST['googleanalyticsmode']))
 		update_option('simple_basket_google_analytics_mode', $_POST['googleanalyticsmode']);
+		
+	if (isset($_POST['ordercompletevirtualvage']))
+		update_option('simple_basket_order_compete_virtual_page', $_POST['ordercompletevirtualvage']);
+			
 
+	if (isset($_POST['confirmationEmailSubject']))
+		update_option('simple_basket_conformation_email_subject', $_POST['confirmationEmailSubject']);
 	if (isset($_POST['confirmemail']))
 		update_option('simple_basket_conformation_email_post', $_POST['confirmemail']);
 
+	if (isset($_POST['adminEmailSubject']))
+		update_option('simple_basket_admin_email_subject', $_POST['adminEmailSubject']);
 	if (isset($_POST['adminemail']))
 		update_option('simple_basket_admin_email_post', $_POST['adminemail']);
+		
 }
 
 
@@ -65,18 +77,18 @@ function showSelected($current=0, $setting=0)
 				<li><a href="#tabSBGoogleAnalytics"><?php _e('Google Analytics', 'simple_basket')?></a></li>
 				<li><a href="#tabSBMessages"><?php _e('Messages', 'simple_basket')?></a></li>
 			</ul>
-			<div id="tabSBMain"><!-- Остновные параетры корзины -->
+			<div id="tabSBMain"><!-- Основные параетры корзины -->
 				<fieldset>
 					<legend><?php _e('Basket Options', 'simple_basket')?></legend>
 					<div class="control">
 						<label for="buyNowCaption"><?php _e('Buy Now Button Caption', 'simple_basket')?></label>
 						<input id="buyNowCaption" class="textString" type="text" name="buynowcaption" value="<?php echo get_option('simple_basket_buynow_caption'); ?>" />
-						<p><?php _e('This parameter specifies the caption on the buttom [Buy]. To display this button use shortcode [buy-now] or call function &lt;?php showBuyNowButton() ?&gt;', 'simple_basket')?></p>
+						<p><?php _e('This parameter specifies the caption on the buttom [Buy]. To display this button use shortcode [basket-buy-button] or call function &lt;?php showBuyNowButton() ?&gt;', 'simple_basket')?></p>
 					</div>
 					<div class="control">
 						<label for="orderPage"><?php _e('Order Page', 'simple_basket')?></label>
 						<input id="orderPage" class="textString" type="text" name="orderpage" value="<?php echo get_option('simple_basket_order_page'); ?>" />
-						<p><?php _e('This parameter specifies the URL of page contains order form. To display thу order form use shortcode [order-form]', 'simple_basket')?></p>
+						<p><?php _e('This parameter specifies the URL of page contains order form. To display thу order form use shortcode [basket-order-form]', 'simple_basket')?></p>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -133,12 +145,22 @@ function showSelected($current=0, $setting=0)
 						</select>
 						<p><?php _e('This parameter specifies the integration mode with Google Analytits. This option adds the necessary tracking code to the page "Thanks for your purchase". For correct intergation e-commerce mode must be enabled at Google Analytics profile options.', 'simple_basket')?></p>
 					</div>
+					<div class="control">
+						<label for="ordercompletevirtualvage"><?php _e('Virtual page Order Complete', 'simple_basket')?></label>
+						<input id="ordercompletevirtualvage" class="textString" type="text" name="ordercompletevirtualvage" value="<?php echo get_option('simple_basket_order_compete_virtual_page'); ?>" />
+						<p><?php _e('This parameter specifies the URL of virtual page tracking GA when order completed. Leave it empty to disable this option.', 'simple_basket')?></p>
+					</div>					
+					
 				</fieldset>		
 			</div><!--/tabSBGoogleAnalytics-->
 			
 			<div id="tabSBMessages"><!-- Параметры писем -->
 				<fieldset>
-					<legend><?php _e('Confirmation E-mail\'s', 'simple_basket')?></legend>
+					<legend><?php _e('Confirmation E-mail to customer', 'simple_basket')?></legend>
+					<div class="control">
+						<label for="confirmationEmailSubject"><?php _e('Subject', 'simple_basket')?></label>
+						<input id="confirmationEmailSubject" class="textString" type="text" name="confirmationEmailSubject" value="<?php echo get_option('simple_basket_conformation_email_subject'); ?>" />
+					</div>				
 					<div class="control">
 						<label for="confirmationEmail"><?php _e('User E-mail Text', 'simple_basket')?></label>
 						<?php wp_editor(get_option('simple_basket_conformation_email_post'), 'confirmationEmail', 
@@ -147,6 +169,13 @@ function showSelected($current=0, $setting=0)
 								'textarea_name' => 'confirmemail',
 								'teeny' => 'true',
 							)) ?>
+					</div>
+				</fieldset>
+				<fieldset>	
+					<legend><?php _e('Confirmation E-mail to administrator', 'simple_basket')?></legend>
+					<div class="control">
+						<label for="adminEmailSubject"><?php _e('Subject', 'simple_basket')?></label>
+						<input id="adminEmailSubject" class="textString" type="text" name="adminEmailSubject" value="<?php echo get_option('simple_basket_admin_email_subject'); ?>" />
 					</div>
 					<div class="control">
 						<label for="adminEmail"><?php _e('Admin E-mail Text', 'simple_basket')?></label>
@@ -158,8 +187,7 @@ function showSelected($current=0, $setting=0)
 							)) ?>
 					</div>
 					<div>
-						<?php _e('<p>This parameters specify the test fo user and admin confirmation e-mail\'.<br> ' .  
-									'Create the new post, set the status DRAFT and specify the post label at this field.<br/> ' .  
+						<?php _e('<p>This parameters specify the test fo user and admin confirmation e-mail\'s.<br> ' .  
 									'If this paramater is empty no e-mail will send to user.<br/> '.
 									'You may user the following short codes:</p><ul> ' . 
 									'<li>[order-code] - the order code</li>' .
@@ -170,10 +198,9 @@ function showSelected($current=0, $setting=0)
 									'<li>[order-items] - the table with order items</li>' .
 									'</ul>', 'simple_basket')?>
 
-					</div>						
+					</div>
 				</fieldset>
-			</div>	
-		</div><!--/tabSBGoogleAnalytics-->
+			</div><!--/tabSBGoogleAnalytics-->
 		</div><!--/tabSB-->
 		<div>
 			<button class="button button-primary" type="submit"><?php _e('Update settings', 'simple_basket')?></button>
